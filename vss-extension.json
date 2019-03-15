@@ -1,18 +1,18 @@
 {
     "manifestVersion": 1,
-    "id": "flutter",
-    "version": "0.2.13",
+    "id": "flutter-worldviewltd",
+    "version": "0.2.14",
     "name": "Flutter",
     "description": "Flutter extension for Azure DevOps",
-    "publisher": "aloisdeniel",
-    "public": true,
+    "publisher": "WorldviewLTD",
+    "public": false,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
     "categories": [
-        "Pipelines"
+        "Azure Pipelines"
     ],
     "icons": {
         "default": "icon.png"
@@ -28,12 +28,12 @@
     },
     "links": {
         "support": {
-            "uri": "https://github.com/aloisdeniel/vsts-flutter-tasks/issues"
+            "uri": "https://github.com/joshuaferguson/vsts-flutter-tasks/issues"
         }
     },
     "repository": {
         "type": "git",
-        "uri": "https://github.com/aloisdeniel/vsts-flutter-tasks"
+        "uri": "https://github.com/joshuaferguson/vsts-flutter-tasks"
     },
     "tags": [
         "flutter",

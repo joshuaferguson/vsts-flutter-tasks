@@ -31,15 +31,16 @@ function main() {
         let buildName = task.getInput('buildName', false);
         let buildNumber = task.getInput('buildNumber', false);
         let buildFlavour = task.getInput('buildFlavour', false);
+        let buildFlags = task.getInput('buildFlags', false);
         // 5. Builds
         if (target === "all" || target === "ios") {
             let targetPlatform = task.getInput('iosTargetPlatform', false);
             let codesign = task.getBoolInput('iosCodesign', false);
-            yield buildIpa(flutterPath, targetPlatform == "simulator", codesign, buildName, buildNumber, buildFlavour);
+            yield buildIpa(flutterPath, targetPlatform == "simulator", codesign, buildName, buildNumber, buildFlavour, buildFlags);
         }
         if (target === "all" || target === "apk") {
             let targetPlatform = task.getInput('apkTargetPlatform', false);
-            yield buildApk(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour);
+            yield buildApk(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags);
         }
         task.setResult(task.TaskResult.Succeeded, "Application built");
     });
@@ -52,7 +53,7 @@ function clean(flutter) {
         }
     });
 }
-function buildApk(flutter, targetPlatform, buildName, buildNumber, buildFlavour) {
+function buildApk(flutter, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags) {
     return __awaiter(this, void 0, void 0, function* () {
         var args = [
             "build",
@@ -74,13 +75,16 @@ function buildApk(flutter, targetPlatform, buildName, buildNumber, buildFlavour)
         else {
             args.push("--release");
         }
+        if (buildFlags) {
+            args.push(buildFlags);
+        }
         var result = yield task.exec(flutter, args);
         if (result !== 0) {
             throw new Error("apk build failed");
         }
     });
 }
-function buildIpa(flutter, simulator, codesign, buildName, buildNumber, buildFlavour) {
+function buildIpa(flutter, simulator, codesign, buildName, buildNumber, buildFlavour, buildFlags) {
     return __awaiter(this, void 0, void 0, function* () {
         var args = [
             "build",
@@ -107,6 +111,9 @@ function buildIpa(flutter, simulator, codesign, buildName, buildNumber, buildFla
             else {
                 args.push("--release");
             }
+        }
+        if (buildFlags) {
+            args.push(buildFlags);
         }
         var result = yield task.exec(flutter, args);
         if (result !== 0) {

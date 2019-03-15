@@ -1,6 +1,6 @@
 {
-    "id": "10a2efb1-b922-4849-81de-bccd2537ccc1",
-    "name": "FlutterBuild",
+    "id": "2e71c162-8f3d-44a7-955e-a1f6bd42bfd7",
+    "name": "FlutterBuild-WorldViewLTD",
     "friendlyName": "Flutter Build",
     "description": "Build a Flutter application project.",
     "helpMarkDown": "[More Information](https://go.microsoft.com/fwlink/?LinkID=613747)",
@@ -12,7 +12,7 @@
     "version": {
         "Major": 0,
         "Minor": 2,
-        "Patch": 13
+        "Patch": 14
     },
     "groups": [],
     "instanceNameFormat": "Flutter Build $(target)",
@@ -44,6 +44,14 @@
             "label": "Build flavour",
             "defaultValue": "",
             "helpMarkDown": "The flavour of the build, debug or release",
+            "required": false
+        },
+        {
+            "name": "buildFlags",
+            "type": "string",
+            "label": "Additional build flags",
+            "defaultValue": "",
+            "helpMarkDown": "Additional flags to append to the build comand",
             "required": false
         },
         {

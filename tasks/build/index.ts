@@ -25,18 +25,18 @@ async function main(): Promise<void> {
     let buildName = task.getInput('buildName', false);
     let buildNumber = task.getInput('buildNumber', false);
     let buildFlavour = task.getInput('buildFlavour', false);
-
+    let buildFlags = task.getInput('buildFlags', false);
 
     // 5. Builds
     if (target === "all" || target === "ios") {
         let targetPlatform = task.getInput('iosTargetPlatform', false);
         let codesign = task.getBoolInput('iosCodesign', false);
-        await buildIpa(flutterPath, targetPlatform == "simulator", codesign, buildName, buildNumber, buildFlavour);
+        await buildIpa(flutterPath, targetPlatform == "simulator", codesign, buildName, buildNumber, buildFlavour, buildFlags);
     }
 
     if (target === "all" || target === "apk") {
         let targetPlatform = task.getInput('apkTargetPlatform', false);
-        await buildApk(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour);
+        await buildApk(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags);
     }
 
     task.setResult(task.TaskResult.Succeeded, "Application built");
@@ -49,7 +49,7 @@ async function clean(flutter: string) {
     }
 }
 
-async function buildApk(flutter: string, targetPlatform?: string, buildName?: string, buildNumber?: string, buildFlavour?: string) {
+async function buildApk(flutter: string, targetPlatform?: string, buildName?: string, buildNumber?: string, buildFlavour?: string, buildFlags?: string) {
 
     var args = [
         "build",
@@ -75,6 +75,10 @@ async function buildApk(flutter: string, targetPlatform?: string, buildName?: st
         args.push("--release");
     }
 
+    if (buildFlags) {
+        args.push(buildFlags);
+    }
+
     var result = await task.exec(flutter, args);
 
     if (result !== 0) {
@@ -82,7 +86,7 @@ async function buildApk(flutter: string, targetPlatform?: string, buildName?: st
     }
 }
 
-async function buildIpa(flutter: string, simulator?: boolean, codesign?: boolean, buildName?: string, buildNumber?: string, buildFlavour?: string) {
+async function buildIpa(flutter: string, simulator?: boolean, codesign?: boolean, buildName?: string, buildNumber?: string, buildFlavour?: string, buildFlags?: string) {
 
     var args = [
         "build",
@@ -112,6 +116,10 @@ async function buildIpa(flutter: string, simulator?: boolean, codesign?: boolean
         } else {
             args.push("--release");
         }
+    }
+
+    if (buildFlags) {
+        args.push(buildFlags);
     }
 
     var result = await task.exec(flutter, args);
