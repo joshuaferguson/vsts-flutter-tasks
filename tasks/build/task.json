@@ -27,6 +27,7 @@
             "options": {
                 "ios": "iOS",
                 "apk": "Android",
+                "appbundle": "AppBundle",
                 "all": "All"
             }
         },
@@ -80,7 +81,8 @@
             "visibleRule": "target = apk",
             "options": {
                 "android-arm": "Arm",
-                "android-arm64": "Arm64"
+                "android-arm64": "Arm64",
+                "android-arm, android-arm64": "Arm & Arm64"
             }
         },
         {

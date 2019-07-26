@@ -42,6 +42,10 @@ function main() {
             let targetPlatform = task.getInput('apkTargetPlatform', false);
             yield buildApk(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags);
         }
+        if (target === "appbundle") {
+            let targetPlatform = task.getInput('apkTargetPlatform', false);
+            yield buildAppBundle(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags);
+        }
         task.setResult(task.TaskResult.Succeeded, "Application built");
     });
 }
@@ -81,6 +85,37 @@ function buildApk(flutter, targetPlatform, buildName, buildNumber, buildFlavour,
         var result = yield task.exec(flutter, args);
         if (result !== 0) {
             throw new Error("apk build failed");
+        }
+    });
+}
+function buildAppBundle(flutter, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags) {
+    return __awaiter(this, void 0, void 0, function* () {
+        var args = [
+            "build",
+            "appbundle",
+            "--pub"
+        ];
+        if (targetPlatform) {
+            args.push("--target-platform=" + targetPlatform);
+        }
+        if (buildName) {
+            args.push("--build-name=" + buildName);
+        }
+        if (buildNumber) {
+            args.push("--build-number=" + buildNumber);
+        }
+        if (buildFlavour) {
+            args.push("--" + buildFlavour);
+        }
+        else {
+            args.push("--release");
+        }
+        if (buildFlags) {
+            args.push(buildFlags);
+        }
+        var result = yield task.exec(flutter, args);
+        if (result !== 0) {
+            throw new Error("appbundle build failed");
         }
     });
 }

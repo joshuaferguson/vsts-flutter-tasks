@@ -1,6 +1,6 @@
 {
   "name": "flutterinstall",
-  "version": "0.2.13",
+  "version": "0.2.16",
   "description": "Flutter Install Build Task",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aloisdeniel/vsts-flutter-tasks.git"
+    "url": "git+https://github.com/joshuaferguson/vsts-flutter-tasks.git"
   },
-  "author": "Aloïs Deniel",
+  "author": "Joshua Ferguson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aloisdeniel/vsts-flutter-tasks/issues"
+    "url": "https://github.com/joshuaferguson/vsts-flutter-tasks/issues"
   },
-  "homepage": "https://github.com/aloisdeniel/vsts-flutter-tasks#readme",
+  "homepage": "https://github.com/joshuaferguson/vsts-flutter-tasks#readme",
   "dependencies": {
     "vsts-task-lib": "2.7.0",
     "vsts-task-tool-lib": "*",

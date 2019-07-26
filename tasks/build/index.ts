@@ -39,6 +39,11 @@ async function main(): Promise<void> {
         await buildApk(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags);
     }
 
+    if(target === "appbundle") {
+        let targetPlatform = task.getInput('apkTargetPlatform', false);
+        await buildAppBundle(flutterPath, targetPlatform, buildName, buildNumber, buildFlavour, buildFlags);
+    }
+    
     task.setResult(task.TaskResult.Succeeded, "Application built");
 }
 
@@ -83,6 +88,43 @@ async function buildApk(flutter: string, targetPlatform?: string, buildName?: st
 
     if (result !== 0) {
         throw new Error("apk build failed");
+    }
+}
+
+async function buildAppBundle(flutter: string, targetPlatform?: string, buildName?: string, buildNumber?: string, buildFlavour?: string, buildFlags?: string) {
+
+    var args = [
+        "build",
+        "appbundle",
+        "--pub"
+    ];
+
+    if (targetPlatform) {
+        args.push("--target-platform=" + targetPlatform);
+    }
+
+    if (buildName) {
+        args.push("--build-name=" + buildName);
+    }
+
+    if (buildNumber) {
+        args.push("--build-number=" + buildNumber);
+    }
+
+    if (buildFlavour) {
+        args.push("--" + buildFlavour);
+    } else {
+        args.push("--release");
+    }
+
+    if (buildFlags) {
+        args.push(buildFlags);
+    }
+
+    var result = await task.exec(flutter, args);
+
+    if (result !== 0) {
+        throw new Error("appbundle build failed");
     }
 }
 
