@@ -1,7 +1,7 @@
 {
     "id": "0b2720d9-aa39-40f2-a571-de6edafd07b6",
     "name": "FlutterTest-WorldViewLtd",
-    "friendlyName": "Flutter Test",
+    "friendlyName": "WV Flutter Test",
     "description": "Executes all tests for a Flutter project.",
     "helpMarkdown": "For more information, take a look at the Flutter [documentation](https://flutter.io)",
     "category": "Test",
@@ -9,7 +9,7 @@
     "version": {
         "Major": 0,
         "Minor": 2,
-        "Patch": 16
+        "Patch": 18
     },
     "instanceNameFormat": "Flutter Test",
     "inputs": [

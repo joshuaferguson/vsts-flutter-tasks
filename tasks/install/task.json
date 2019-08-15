@@ -1,7 +1,7 @@
 {
     "id": "7575ed94-8dd4-4e0e-b1b9-5103bd848efa",
     "name": "FlutterInstall-WorldViewLTD",
-    "friendlyName": "Flutter Install",
+    "friendlyName": "WV Flutter Install",
     "description": "Install the Flutter environment.",
     "helpMarkdown": "For more information, take a look at the Flutter [documentation](https://flutter.io)",
     "category": "Tool",
@@ -9,7 +9,7 @@
     "version": {
         "Major": 0,
         "Minor": 2,
-        "Patch": 16
+        "Patch": 18
     },
     "instanceNameFormat": "Flutter Install",
     "inputs": [

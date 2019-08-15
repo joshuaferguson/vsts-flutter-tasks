@@ -96,12 +96,10 @@ async function buildAppBundle(flutter: string, targetPlatform?: string, buildNam
     var args = [
         "build",
         "appbundle",
-        "--pub"
+        "--pub",
+        "--target-platform",
+        "android-arm,android-arm64"
     ];
-
-    if (targetPlatform) {
-        args.push("--target-platform=" + targetPlatform);
-    }
 
     if (buildName) {
         args.push("--build-name=" + buildName);

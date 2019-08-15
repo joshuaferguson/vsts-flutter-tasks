@@ -1,8 +1,8 @@
 {
     "manifestVersion": 1,
     "id": "flutter-worldviewltd",
-    "version": "0.2.16",
-    "name": "Flutter",
+    "version": "0.2.19",
+    "name": "WV Flutter",
     "description": "Flutter extension for Azure DevOps",
     "publisher": "WorldviewLTD",
     "public": false,
